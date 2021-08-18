@@ -9,26 +9,46 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    enum Color {
+        case red
+        case yellow
+        case green
+    }
+    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var redView: UIView!
     @IBOutlet weak var yellowView: UIView!
     @IBOutlet weak var greenView: UIView!
+    var color = Color.red
+    let onColor: CGFloat = 1
+    let offColor: CGFloat = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         сreateTrafficLight()
-
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         roundOffView()
     }
     
-    @IBAction func turnTrafficLight(_ sender: UIButton) {
+    @IBAction func turnTrafficLight() {
         
         startButton.setTitle("NEXT", for: .normal)
+        
+        switch color {
+            case .red:
+                greenView.alpha = offColor
+                redView.alpha = onColor
+                color = .yellow
+            case .yellow:
+                redView.alpha = offColor
+                yellowView.alpha = onColor
+                color = .green
+            case .green:
+                greenView.alpha = onColor
+                yellowView.alpha = offColor
+                color = .red
+        }
+        
     }
     
     func сreateTrafficLight() {
@@ -36,6 +56,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .black
         
         startButton.setTitle("START", for: .normal)
+        startButton.backgroundColor = .blue
         
         redView.backgroundColor = .red
         redView.alpha = 0.3
@@ -51,6 +72,6 @@ class ViewController: UIViewController {
         redView.layer.cornerRadius = redView.frame.size.width / 2
         yellowView.layer.cornerRadius = yellowView.frame.size.width / 2
         greenView.layer.cornerRadius = greenView.frame.size.width / 2
+        startButton.layer.cornerRadius = 10
     }
-    
 }
