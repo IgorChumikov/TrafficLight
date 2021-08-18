@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .black
         
+        
         startButton.setTitle("START", for: .normal)
         
         redView.backgroundColor = .red
