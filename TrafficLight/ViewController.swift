@@ -21,19 +21,19 @@ class ViewController: UIViewController {
 
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        roundOffView()
+    }
     
     @IBAction func turnTrafficLight(_ sender: UIButton) {
         
         startButton.setTitle("NEXT", for: .normal)
-        
-        
-
     }
     
     func сreateTrafficLight() {
         
         view.backgroundColor = .black
-        
         
         startButton.setTitle("START", for: .normal)
         
@@ -45,7 +45,12 @@ class ViewController: UIViewController {
         
         greenView.backgroundColor = .green
         greenView.alpha = 0.3
-        
+    }
+    
+    func roundOffView() {
+        redView.layer.cornerRadius = redView.frame.size.width / 2
+        yellowView.layer.cornerRadius = yellowView.frame.size.width / 2
+        greenView.layer.cornerRadius = greenView.frame.size.width / 2
     }
     
 }
